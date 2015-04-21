@@ -125,11 +125,16 @@
 		<div class="well">
 			<h3 class="no-margin-top text-muted">Login to your account </h3>
 				<form method="post" action="login.jsp" id="login-form" name="login-form">
-				<div id="inv-pass" class="alert alert-block alert-danger">
-					<button type="button" class="close" data-dismiss="alert"></button>
-						<span class="alert-heading"><b>Error!</b></span>
-						<span class="alert-heading">Invalid username or password</span>
-				</div>
+				<% 
+					String msg = request.getParameter("msg");
+				   	if (msg != null){
+						out.write("<div id='inv-pass' class='alert alert-block alert-danger'>");
+							out.write("<button type='button' class='close' data-dismiss='alert'></button>");
+							out.write("<span class='alert-heading'><b>Error!</b></span>");
+							out.write("<span class='alert-heading'>Invalid username or password</span>");
+						out.write("</div>");
+					}
+				%>	
 				<div id="d-email_log" class="form-group">
 					<div class="input-group">
 						<span id="email_log-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter your email" class="input-group-addon">
@@ -153,15 +158,7 @@
                 </div>
                 </form>
 				<button id="login" type="button" role="button" class="btn btn-primary cool-text">Login</button>
-				<% String msg = request.getParameter("msg");
-				   if (msg == "Wrong")
-					{
-					out.write("<font size='2' color='red'><b>");
-					out.print("Email ID/Password is Wrong. Try Again");	
-					out.write("</b></font>");
-					}
-				%>	
-				
+							
 				<h3 class="no-margin-top text-muted">Don't have an account</h3> 
 				<a href="Signup.html"><button id="" type="button" role="button" class="btn btn-danger width-full cool-text">Sign up</button></a>					
 		</div>

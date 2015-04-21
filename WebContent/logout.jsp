@@ -10,7 +10,7 @@
 	for (i=0; i<cookies.length; i++) 
 	{ cookies[i].setMaxAge(0); }
 	
-	String site = new String("index.jsp?msg=Logged Out Successfully");
+	String site = new String("index.jsp");
  	response.setStatus(response.SC_MOVED_TEMPORARILY);
  	response.setHeader("Location", site);				
     %>
