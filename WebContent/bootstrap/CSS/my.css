@@ -1,0 +1,180 @@
+#Llogo{
+width:30%;
+float:left;
+height:130px;
+margin-left:10px;
+margin-top:10px;
+margin-bottom:10px;
+}
+#Rlogo{
+width:30%;
+float:right;
+height:155px;
+margin-right:0px;
+margin-top:10px;
+}
+#Clogo{
+float:left;
+width:30%;
+height:155px;
+margin-left:70px;
+margin-top:10px;
+}
+.logo_container {
+	width:960px; 
+	top:0px; 
+	left:0px; 
+}
+.logo_container, h1.logo, h1.logo a {
+	height:155px;
+}
+#container_header {background-image: url(header-container.png); 
+
+		background-position:top center; 
+		height:180px;
+		padding-top:-5px;
+		}
+		
+ul.nav1 li.dropdown1:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+.nav1{
+	padding-left:0;
+	margin-bottom:0;
+	list-style:none;
+}
+
+.dropdown1{
+	position:relative;
+}
+
+p.one1 {
+    border-style: solid;
+    border-width: 4px;
+	padding:5px;
+	
+}
+
+.footer{
+	width:100%;
+	font: bold 12px verdana , Arial;
+	color:#475e88;
+	text-align:center;
+	height:40px;
+	padding:10px 0 0 0;
+	position:relative;
+	bottom:0px;
+}
+
+hr.one2{
+	margin-left:15px;
+	margin-right:15px;
+}
+
+body{
+	background-color:whitesmoke;
+}
+
+.one {
+	background-color:white;
+	border-style: solid;
+    border-width: 2px;
+	margin-left:100px;
+	margin-right:100px;
+}
+
+/* input  groups */
+.input-group.input-group-fixed {
+  width: auto !important;
+}
+
+.input-group-addon {
+  border-color: #e5e5e5;
+  background: #e5e5e5;
+  min-width: 39px;
+}
+
+.input-group-addon > i {
+  color: #999;
+}
+
+#inv-pass{
+  display: none;
+}
+
+
+/***
+Error States
+***/
+.has-warning .help-inline,
+.has-warning .help-block,
+.has-warning .control-label {
+  color: #c09853;
+}
+
+.has-warning .form-control {
+  border-color: #c09853;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-warning .form-control:focus {
+  border-color: #a47e3c;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-warning .input-group-addon {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #c09853;
+}
+
+.has-error .help-inline,
+.has-error .help-block,
+.has-error .control-label {
+  color: #b94a48;
+}
+
+.has-error .form-control {
+  border-color: #b94a48;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-error .form-control:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-error .input-group-addon {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #b94a48;
+}
+
+.has-success .help-inline,
+.has-success .help-block,
+.has-success .control-label {
+  color: #468847;
+}
+
+.has-success .form-control {
+  border-color: #468847;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-success .form-control:focus {
+  border-color: #356635;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.has-success .input-group-addon {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #468847;
+}
