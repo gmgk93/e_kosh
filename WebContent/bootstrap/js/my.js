@@ -189,10 +189,10 @@ $(document).ready(function(){
 		
 	});
 	
-	
+	//search button handler of third.jsp page
 	$(document).on('click', '#but', function(e){
 		var dataString = "doc_id="+$('#doc_id').val();
-		alert(dataString);
+		//alert(dataString);
 		$.ajax({
 		    type  : 'POST',
 		    url   : 'search.jsp',
@@ -202,6 +202,7 @@ $(document).ready(function(){
 			},
 			success: function(responseText){ 
 				$('#docBody').html(responseText);
+				$('#searchPanel').show();
 			},
 			complete: function(responseText){ 
 
@@ -212,6 +213,18 @@ $(document).ready(function(){
 		});
 	});
 	
+	//select all 
+	$(document).on('click', '#mainCheckbox', function(e){
+		if(this.checked) { // check select status
+            $('.checkbox1').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"               
+            });
+        }else{
+            $('.checkbox1').each(function() { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+            });         
+        }
+	});
 	
 });
 

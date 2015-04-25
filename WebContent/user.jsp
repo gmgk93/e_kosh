@@ -113,7 +113,7 @@ catch(Exception e)
 			</li>
 		 </ul>
 		 <ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Welcome User!!</a></li>
+			<li><a href="#">Welcome <% out.print((String)session.getAttribute("name")); %></a></li>
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
 			  <ul class="dropdown-menu" role="menu">
@@ -180,16 +180,17 @@ catch(Exception e)
 			</hr>
 		</div>
 	</div>	
-
 	<br/>
+	
+	
 	<div class="row">
 		<div class="panel panel-default col-md-offset-1" style="width:1000px">
 		<!-- Default panel contents -->
-			<div class="panel-heading">List of Docs</div>
+			<div class="panel-heading"><b>List of Docs Uploaded</b></div>
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover">
-						  <tr> <th text-align=center> Sl. No. </th> <th>Select<input type="checkbox" style="margin-left:5px"/></th><th> ID </th> <th> Name of the Doc</th> <th> Date of Uploading </th> <th> Verification Status </th><th> Privacy </th></tr>
+						  <tr> <th text-align=center> Sl. No. </th> <th>Select<input type="checkbox" id ="mainCheckbox"style="margin-left:5px"/></th><th> ID </th> <th> Name of the Doc</th> <th> Date of Uploading </th> <th> Verification Status </th><th> Privacy </th></tr>
 						  <tbody>
 						  		<%
 								try {
@@ -208,7 +209,7 @@ catch(Exception e)
 								       String privacy = rs.getString("privacy");
 								
 								       //Display values
-								       out.print(" <tr align=center><td><b>#"+(i++)+"</td> <td> <input type='checkbox'/> </td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
+								       out.print(" <tr align=center><td><b>#"+(i++)+"</td> <td> <input type='checkbox' class='checkbox1'/> </td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
 									}
 								    rs.close();
 								}
@@ -225,48 +226,57 @@ catch(Exception e)
 				</div>
 		</div>	  
 	</div>
+	
+	
+	<br><br>
 	<div class="row">
-	  <div class="col-md-3 col-md-offset-1"><b>Add new document here</b></div>
-	</div><br/>
-	<form method="post" action="uploadServlet" enctype="multipart/form-data" id="uploadForm">
-	<div class="row">
-		<div class="col-md-2 col-md-offset-1">Type of Document</div>
-		<div class="col-md-3">
-			<select class="btn btn-default" name="type">
-				  <option value="PAN Card">PAN Card</option>
-				  <option value="Driver's License">Driver's License</option>
-				  <option value="Passport">Passport</option>
-				  <option value="other">other</option>
-			</select>
-		</div>
-	</div><br/>
-	<div class="row">
-		<div class="col-md-2 col-md-offset-1">Name of Document</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<input type="text" placeholder="enter name" class="form-control" name="docname" id="docname">
+		<div class="panel panel-default col-md-offset-1" style="width:1000px">
+		<!-- Default panel contents -->
+			<div class="panel-heading"><b>Add new document here</b></div>
+				<div class="panel-body">
+					<form method="post" action="uploadServlet" enctype="multipart/form-data" id="uploadForm">
+						<div class="row">
+							<div class="col-md-2 col-md-offset-1">Type of Document</div>
+							<div class="col-md-3">
+								<select class="btn btn-default" name="type">
+									  <option value="PAN Card">PAN Card</option>
+									  <option value="Driver's License">Driver's License</option>
+									  <option value="Passport">Passport</option>
+									  <option value="other">other</option>
+								</select>
+							</div>
+						</div><br/>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-1">Name of Document</div>
+								<div class="col-md-3">
+									<div class="input-group">
+										<input type="text" placeholder="enter name" class="form-control" name="docname" id="docname">
+									</div>
+								</div>
+						</div><br/>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-1">Privacy</div>
+								<div class="col-md-3">
+									<div class="input-group">
+										<input type="radio" name="privacy" value="private" id="private" checked="checked"> Private 
+										<input type="radio" name="privacy" value="public" id="public"> Public 
+									</div>
+								</div>
+						</div><br/>
+						<div class="row">
+							<div class="col-md-3 col-md-offset-1">
+									<div class="input-group">
+									<input type="file" name="file" id="file" class="form-control" placeholder="">
+									</div>
+							</div>
+							  <button type="button" class="btn btn-default" id="uploadButton">Upload</button>
+						</div>
+					</form>
 				</div>
 			</div>
 	</div><br/>
-	<div class="row">
-		<div class="col-md-2 col-md-offset-1">Privacy</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<input type="radio" name="privacy" value="private" id="private" checked="checked"> Private 
-					<input type="radio" name="privacy" value="public" id="public"> Public 
-				</div>
-			</div>
-	</div><br/>
-	<div class="row">
-		<div class="col-md-3 col-md-offset-1">
-				<div class="input-group">
-				<input type="file" name="file" id="file" class="form-control" placeholder="">
-				</div>
-		</div>
-		  <button type="button" class="btn btn-default" id="uploadButton">Upload</button>
-	</div><br/><hr class="one2"/>
-	</form>
-		        
+	
+	<br/><hr class="one2"/>    
 	     
 	
 </div>

@@ -10,10 +10,22 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 		Statement stmt = con.createStatement();
+		
+		//sql update querry
 		String s = "insert into details values(NULL,'" + email + "','"
 				+ name + "','" + pswd + "')";
 		stmt.executeUpdate(s);
 		String site = new String("user.jsp");
+		
+		//get id of newly created user to create session variable
+		s ="select * from details where email='"+email+"'";
+	    ResultSet rs = stmt.executeQuery(s);
+	    String owner=rs.getString("owner_id");
+		
+	    //create session variable
+	    session.setAttribute("email",email);
+    	session.setAttribute("owner",owner);
+    	session.setAttribute("name",name);
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", site);
 	} catch (SQLException e) {

@@ -6,24 +6,42 @@
 
 <%
  	try {
- 		
+ 		 String doc_id = request.getParameter("doc_id");
+ 		 int viewer_id = 1; //(String)session.getAttribute("owner");
 		 java.sql.Connection con;
 		    Class.forName("com.mysql.jdbc.Driver");
 		    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 		    Statement stmt = con.createStatement();
-		    String s="select id,name,uploaded_on,privacy from docs where id="+request.getParameter("doc_id");
+		    
+		    String s = "select * from recentdocs rd,docs d where viewer_id="+viewer_id+" and doc_id="+doc_id;
 		    ResultSet rs = stmt.executeQuery(s);
-		    int i=1;
+		    if(!rs.next()){
+		    	s = "insert into recentdocs values(NULL,"+doc_id+","+viewer_id+")";
+			    stmt.executeUpdate(s);
+			}
+		    
+		    s="select id,name,uploaded_on,privacy from docs where id="+doc_id;
+		    rs = stmt.executeQuery(s);
+		    int i=0;
 		    while(rs.next()){
 		       //Retrieve by column name
 		       String name = rs.getString("name");
 		       String id = rs.getString("id");
 		       String date = rs.getString("uploaded_on");
 		       String privacy = rs.getString("privacy");
+		       ++i;
 		
 		       //Display values
-		       out.print(" <tr align=center><td><b>#"+(i++)+"</td> <td> <input type='checkbox'/> </td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
-			}
+		       out.print(" <img src='" + "retriveImage?" + id + "'height='400'/><br/>");
+		       out.print("<br/><br/><table class='table table-bordered table-striped no-margin-bottom'>");
+		       out.print("<tr><td><b>Name</b></td><td>"+name+"</td></tr>");
+		       out.print("<tr><td><b>ID</b><td>"+id+"</td></tr>");
+		       out.print("<tr><td><b>Upload Date</b><td>"+date+"</td></tr>");
+		       out.print("<tr><td><b>Privacy</b><td>"+privacy+"</td></tr>");
+		       out.print("</table>");
+		    }if(i==0)
+		    	out.print("<center><h2>Document Not Found</h2><br/><H3>Make sure you enterd the Document Number Correctly</h3><center>");
+		    
 		    rs.close();
  			}
 		

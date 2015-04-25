@@ -111,49 +111,57 @@
 	
 	
  
-<div class="container-fluid">
-	<br/>
-		<div class="row">
-		<div class="col-lg-2 col-md-offset-1">
-			<div class="input-group">
-				<input type="text" placeholder="enter document id" id="doc_id" name ="doc_id" class="form-control">
-			</div><!-- /input-group -->
-		</div>
-		<div class="btn-group">
-			<input type="button" class="btn btn-default" value="Search" name="but" id="but">
-		</div>
-		<div class="row">
-		<div class="btn-group col-md-offset-3">
-			
-		
-			<div class='col-md-offset-10'><a href='print.jsp'><button type='submit' style='margin-left:280px' class='btn btn-default'>Profile Details</button></a></div>
-			
-			</br>
-			</hr>
-		</div>
-	</div>	
-		</div>
-			
-			</br>
+	<div class="container-fluid">
+		<br/>
+			<div class="row">
+				<div class="col-lg-2 col-md-offset-1">
+					<div class="input-group">
+						<input type="text" placeholder="enter document id" id="doc_id" name ="doc_id" class="form-control">
+					</div><!-- /input-group -->
+				</div>
+				<div class="btn-group">
+					<input type="button" class="btn btn-default" value="Search" name="but" id="but">
+				</div>
+				<div class="row">
+				<div class="btn-group col-md-offset-3">
+					<div class='col-md-offset-10'><a href='print.jsp'><button type='submit' style='margin-left:280px' class='btn btn-default'>Profile Details</button></a></div>
+					</br></hr>
+				</div>
+				</div>	
+			</div>
+				
+		</br>
+			<div class="row" style="display:none" id="searchPanel">
+				<div class="panel panel-default col-md-offset-3" style="width:650px" >
+				<!-- Default panel contents -->
+					<div class="panel-heading"><b>Search Result</b></div>
+						<div class="panel-body">
+							<div id="docBody" style="margin-left:30px">
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/><br/>
 			
 			<div class="row">
-		<div class="panel panel-default col-md-offset-1" style="width:1000px">
-		<!-- Default panel contents -->
-			<div class="panel-heading">List of Docs</div>
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-bordered table-hover">
-						  <tr> <th text-align=center> Sl. No. </th> <th>Select<input type="checkbox" style="margin-left:5px"/></th><th> ID </th> <th> Name of the Doc</th> <th> Date of Uploading </th> <th> Verification Status </th><th> Privacy </th></tr>
-						  <tbody id="docBody">
-						  <%
-						  	try {
-									 java.sql.Connection con;
+				<div class="panel panel-default col-md-offset-1" style="width:1000px">
+				<!-- Default panel contents -->
+					<div class="panel-heading"><b>Recently Viewed Documents</b></div>
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+								  <tr> <th text-align=center> Sl. No. </th> <th> ID </th> <th> Name of the Doc</th> <th> Date of Uploading </th> <th> Verification Status </th><th> Privacy </th></tr>
+								  <tbody>
+								  <%
+								  	try {
+								  		String viewer_id = (String)session.getAttribute("owner");
+										java.sql.Connection con;
 									    Class.forName("com.mysql.jdbc.Driver");
 									    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 									    Statement stmt = con.createStatement();
-									    String s="select id,name,uploaded_on,privacy from docs where id=2";//+request.getParameter("doc_id");
+									    String s="select d.id,d.name,d.uploaded_on,d.privacy from docs d,recentdocs rd where rd.doc_id=d.id and rd.viewer_id="+viewer_id;
 									    ResultSet rs = stmt.executeQuery(s);
-									    int i=1;
+									    int i=0;
 									    while(rs.next()){
 									       //Retrieve by column name
 									       String name = rs.getString("name");
@@ -162,39 +170,30 @@
 									       String privacy = rs.getString("privacy");
 									
 									       //Display values
-									       out.print(" <tr align=center><td><b>#"+(i++)+"</td> <td> <input type='checkbox'/> </td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
+									       out.print(" <tr align=center><td><b>#"+(++i)+"</td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
 										}
+									    if(i == 0)
+									    	out.print("<td colspan='7' align='center'>No Document Viewed Recently</td>");
 									    rs.close();
 						  			}
-									
-								   
-							
-								catch(SQLException e) {
-								    out.println("failed....\nSQLException caught: " +e.getMessage());
+									catch(SQLException e) {
+									    out.println("failed....\nSQLException caught: " +e.getMessage());
 								    }	
-						  
-						  %>
-						  </tbody>
-						</table>
-					</div>
-					<div class="btn-group btn-group-md" style="margin-left:125px" role="toolbar" aria-label="...">
-						<button type="button" class="btn btn-default">Delete</button>
-					</div>
-				</div>
-		</div>	  
+								  %>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+				</div>	  
+			</div>
+				
+				
+				
 	</div>
-			
-			
-			
-		</div>
-	</div><br/>
-	
+	<br/>
 	
 
-	
-		
-		<!-- enter body here -->
-</div><br/><hr class="one2"/>
+<br/><hr class="one2"/>
 <div class="footer">
 	
 	<p>&nbsp;&nbsp;&nbsp;<a href="http://epramaan.gov.in/index.jsp">Home</a> | <a href="http://epramaan.gov.in/service.jsp">e-Governance Services</a> | <a href="http://epramaan.gov.in/faq.jsp">FAQs</a> | <a href="http://epramaan.gov.in/aboutcdac.jsp">About C-DAC  </a> | <a href="http://www.deity.gov.in/">About DeitY  </a></p>
