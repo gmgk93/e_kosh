@@ -15,11 +15,13 @@ try {
     ResultSet rs = stmt.executeQuery(s);
     rs.last();
     if(rs.getRow()==1){
-    	String site = new String("user.jsp");
+    	String user_site = new String("user.jsp");
+    	String third_site = new String("third.jsp");
     	
     	//Extracting name and owner_id
     	String owner=rs.getString("owner_id");
     	String name=rs.getString("name");
+    	String type = rs.getString("type");
     	
     	//create session variable
     	session.setAttribute("email",email);
@@ -27,7 +29,10 @@ try {
     	session.setAttribute("name",name);
  	   	
     	response.setStatus(response.SC_MOVED_TEMPORARILY);
- 	  	response.setHeader("Location", site);
+    	if(type.equals("user"))
+ 	  	response.setHeader("Location", user_site);
+    	else
+        response.setHeader("Location", third_site);
 	
 	}
     else
