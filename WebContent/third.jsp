@@ -3,6 +3,32 @@
 <%@ page import="java.sql.*"%>
 <%@include file="/Include.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+response.setHeader("Cache-Control","no-cache"); 
+response.setHeader("Pragma","no-cache"); 
+response.setDateHeader ("Expires", -1); 
+
+       try
+		{
+    	   String email_id = (String)session.getAttribute("email");
+    	   
+    	   
+ 
+		if(email_id==null)
+		{
+			response.sendRedirect("index.jsp");
+		}
+		
+		}
+catch(Exception e)
+
+{
+	e.printStackTrace();
+}
+		
+%>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -79,7 +105,7 @@
 		 
 		 
 		 <ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Welcome User!!</a></li>
+			<li><a href="#">Welcome <% out.print((String)session.getAttribute("name")); %></a></li>
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
 			  <ul class="dropdown-menu" role="menu">

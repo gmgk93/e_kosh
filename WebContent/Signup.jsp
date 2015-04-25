@@ -17,7 +17,12 @@
 		String s = "insert into details values(NULL,'" + email + "','"
 				+ name + "','" + pswd + "','" + mobile + "','" + type + "')";
 		stmt.executeUpdate(s);
-		String site = new String("user.jsp");
+		String site;
+		if(type.equals("user"))
+			site = new String("user.jsp");
+	    else
+	    	site = new String("third.jsp");
+		
 		
 		//get id of newly created user to create session variable
 		s ="select * from details where email='"+email+"'";
