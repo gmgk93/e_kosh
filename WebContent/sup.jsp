@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="java.io.*,java.util.*,java.lang.*" %>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -102,7 +103,18 @@
 					</span>
 					<input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
 				</div>
-			</div>		
+				</div>
+				
+				<div id="phone" class="form-group">
+				<div class="input-group">
+					<span id="phone-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter mobile number" class="input-group-addon">
+						&nbsp&nbsp Mobile &nbsp&nbsp
+					</span>
+					<input type="text" id="phone" name="phone" class="form-control" placeholder="10 digit mobile number">
+				</div>
+			</div>
+				
+					
 			<div id="d-password" class="form-group">
 				<div class="input-group">
 					<span id="password-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter a password (Must be 6 char long)" class="input-group-addon">
@@ -111,6 +123,18 @@
 					<input type="password" id="password" name="password" class="form-control" placeholder="Password">
 				</div>
 			</div>	
+			
+			
+			<div id="type" class="form-group">
+				<div id="d-password" class="form-group">
+				<div class="input-group">
+				Signup as &nbsp&nbsp&nbsp&nbsp
+				  <input type="radio" name="user" value="user" id="user" checked="checked"> User 
+				  <input type="radio" name="user" value="third" id="third"> Third Party 
+				</div>
+			</div>	
+			</div>	
+			
 			<div class="checkbox">
 				<label>
 				  <input type="checkbox" checked> By signing up I agree the <a href="#">terms</a> and <a href="#">privacy policy</a>

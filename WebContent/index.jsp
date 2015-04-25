@@ -160,7 +160,7 @@
 				<button id="login" type="button" role="button" class="btn btn-primary cool-text">Login</button>
 							
 				<h3 class="no-margin-top text-muted">Don't have an account</h3> 
-				<a href="Signup.html"><button id="" type="button" role="button" class="btn btn-danger width-full cool-text">Sign up</button></a>					
+				<a href="sup.jsp"><button id="" type="button" role="button" class="btn btn-danger width-full cool-text">Sign up</button></a>					
 		</div>
 	</div>
 	</div><br/>
