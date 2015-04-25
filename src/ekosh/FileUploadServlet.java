@@ -60,7 +60,7 @@ public class FileUploadServlet extends HttpServlet {
 			
 			// constructs SQL statement
 			String sql = "INSERT INTO docs (owner_id, type,name , data, format, uploaded_on,privacy) values (?, ?, ?, ?, ?, ?,?)";
-			int own = (Integer)request.getSession().getAttribute("owner");
+			int own = Integer.parseInt((String)request.getSession().getAttribute("owner"));
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, own );		//update owner id
 			statement.setString(2, type);
