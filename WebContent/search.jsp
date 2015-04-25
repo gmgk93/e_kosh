@@ -7,7 +7,7 @@
 <%
  	try {
  		 String doc_id = request.getParameter("doc_id");
- 		 int viewer_id = 1; //(String)session.getAttribute("owner");
+ 		 int viewer_id = Integer.parseInt((String)session.getAttribute("owner"));
 		 java.sql.Connection con;
 		    Class.forName("com.mysql.jdbc.Driver");
 		    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
