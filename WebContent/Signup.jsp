@@ -1,4 +1,6 @@
 <%@ page import="java.sql.*"%>
+<%@ page import="ekosh.sendSms"%>
+
 <%@include file="Include.jsp"%>
 
 <%
@@ -29,13 +31,17 @@
 	    ResultSet rs = stmt.executeQuery(s);
 	    rs.next();
 	    String owner=rs.getString("owner_id");
-		
+	    
+	    //send otp
+	    String msg = sendSms.generateOTP();
+	    sendSms.SMSSender("ishan.int29", "615916", mobile, msg, "WEBSMS", "0");
+
 	    //create session variable
 	    session.setAttribute("email",email);
-    	session.setAttribute("owner",owner);
-    	session.setAttribute("name",name);
-		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", site);
+    	    session.setAttribute("owner",owner);
+    	    session.setAttribute("name",name);
+	    response.setStatus(response.SC_MOVED_TEMPORARILY);
+	    response.setHeader("Location", site);
 	} catch (SQLException e) {
 		out.println("failed....\nSQLException caught: "
 				+ e.getMessage());
