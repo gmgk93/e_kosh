@@ -57,8 +57,8 @@ public class sendSms {
 	{
 		String characters = "0123456789";
 		Random rng = new Random();
-	    char[] text = new char[5];
-	    for (int i = 0; i < 5; i++)
+	    char[] text = new char[8];
+	    for (int i = 0; i < 8; i++)
 	    {
 	        text[i] = characters.charAt(rng.nextInt(characters.length()));
 	    }
