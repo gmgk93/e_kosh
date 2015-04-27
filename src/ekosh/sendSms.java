@@ -39,7 +39,7 @@ public class sendSms {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
 			while ((line = rd.readLine()) != null) {
-				// Process line…
+				// Process lineâ€¦
 				retval += line;
 			}
 			wr.close();
@@ -62,8 +62,7 @@ public class sendSms {
 	    {
 	        text[i] = characters.charAt(rng.nextInt(characters.length()));
 	    }
-	    characters = "Your OTP is:"+text.toString();
-	    return new String(characters);
+	    return new String(text);
 	}
 	
 	
