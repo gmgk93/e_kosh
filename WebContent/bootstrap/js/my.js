@@ -226,5 +226,17 @@ $(document).ready(function(){
         }
 	});
 	
+	//first tym login handler
+	$(document).on('click', '#but_pswd_reset', function(e){
+		var pass1 = $('#password_log11').val();
+		var pass2 = $('#password_log12').val();;
+		if(pass1 == pass2)
+			$("#pswd-reset").submit();
+		else
+			$('#pass_mismatch').show();
+		//alert(dataString);
+		
+	});
+	
 });
 

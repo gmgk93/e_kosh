@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%@ page import="java.io.*,java.util.*,java.lang.*" %>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -84,56 +83,36 @@
  
 <div class="container-fluid">
 	<br/>
+		<div class="col-md-4 col-md-offset-1">
+		<h2> Welcome <% out.print((String)session.getAttribute("name")); %>. </h2><br>
+		<h3> Enter Your New Password</h3>
+		<form method="post" action="changePswd.jsp" id="pswd-reset" name="pswd-reset">
+			<div id='pass_mismatch' class='alert alert-block alert-danger' style="display:none">
+				<button type='button' class='close' data-dismiss='alert'></button>
+				<span class='alert-heading'><b>Error!</b></span>
+				<span class='alert-heading'>Passwords Dont Match</span>
+			</div>
+			<div id="d-password_log11" class="form-group">
+				<div class="input-group">
+					<span id="password_log-tooltip1" data-toggle="tooltip" data-placement="left" data-original-title="Please enter your new password" class="input-group-addon">
+						<i class="fa fa-lock"></i>
+					</span>
+					<input type="password" id="password_log11" class="form-control" placeholder="Password" name="password_log11">
+				</div>
+			</div>	
+			<div id="d-password_log12" class="form-group">
+				<div class="input-group">
+					<span id="password_log-tooltip2" data-toggle="tooltip" data-placement="left" data-original-title="Please reenter your password" class="input-group-addon">
+						<i class="fa fa-lock"></i>
+					</span>
+					<input type="password" id="password_log12" class="form-control" placeholder="Reenter Password" name="password_log12">
+				</div>
+			</div>
+  		</form>
+			<button id="but_pswd_reset" type="button" role="button" class="btn btn-primary cool-text">Change Password</button>
+		</div>
 	
-		<div class="col-md-6 col-md-offset-1">
-		<div class="well">
-			<h3 class="no-margin-top text-muted">Sign Up </h3>
-			<form name="sign-up-form" id="sign-up-form" method="post" action="Signup.jsp">
-			<div id="d-fullname" class="form-group">
-				<div class="input-group">
-					<span id="fullname-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter your fullname" class="input-group-addon">
-						Fullname&nbsp
-					</span>
-					<input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full name">
-				</div>
-			</div>	
-			<div id="d-email" class="form-group">
-				<div class="input-group">
-					<span id="email-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter your email" class="input-group-addon">
-						&nbsp&nbsp Email &nbsp&nbsp&nbsp
-					</span>
-					<input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
-				</div>
-			</div>
-				
-			<div id="d-mobile" class="form-group">
-				<div class="input-group">
-					<span id="mobile-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter mobile number" class="input-group-addon">
-						&nbsp&nbsp Mobile &nbsp&nbsp
-					</span>
-					<input type="text" id="mobile" name="mobile" class="form-control" placeholder="10 digit mobile number">
-				</div>
-			</div>
-						
-			<div id="type" class="form-group">
-				<div id="d-password" class="form-group">
-				<div class="input-group">
-				Signup as &nbsp&nbsp&nbsp&nbsp
-				  <input type="radio" name="user" value="user" id="user" checked="checked"> User 
-				  <input type="radio" name="user" value="third" id="third"> Third Party 
-				</div>
-			</div>	
-			</div>	
-			
-			<div class="checkbox">
-				<label>
-				  <input type="checkbox" checked> By signing up I agree the <a href="#">terms</a> and <a href="#">privacy policy</a>
-				</label>
-			</div>
-			<button id="signup" type="button" role="button" class="btn btn-danger width-full cool-text">Sign up</button>
-			</form>
-		</div>
-		</div>
+	
 	
 </div><br/><hr class="one2"/>
 <div class="footer">

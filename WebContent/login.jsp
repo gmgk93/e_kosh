@@ -15,24 +15,30 @@ try {
     ResultSet rs = stmt.executeQuery(s);
     rs.last();
     if(rs.getRow()==1){
-    	String user_site = new String("user.jsp");
-    	String third_site = new String("third.jsp");
+    	String site;
     	
     	//Extracting name and owner_id
     	String owner=rs.getString("owner_id");
     	String name=rs.getString("name");
     	String type = rs.getString("type");
+    	String ver_stat = rs.getString("verified");
     	
     	//create session variable
     	session.setAttribute("email",email);
     	session.setAttribute("owner",owner);
     	session.setAttribute("name",name);
- 	   	
-    	response.setStatus(response.SC_MOVED_TEMPORARILY);
-    	if(type.equals("user"))
- 	  	response.setHeader("Location", user_site);
+    	session.setAttribute("type",type);
+    	
+    	//check if user is loginin in for the first tym
+    	if(ver_stat.equals("0"))
+    		site = new String("firstLogin.jsp");
+    	else if(type.equals("user"))
+    		site = new String("user.jsp");
     	else
-        response.setHeader("Location", third_site);
+    		site = new String("third.jsp");
+    	
+    	response.setStatus(response.SC_MOVED_TEMPORARILY);
+    	response.setHeader("Location", site);
 	
 	}
     else
