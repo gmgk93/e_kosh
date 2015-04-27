@@ -7,5 +7,5 @@ public class Variables {
 		public static String dbUser = "root";
 		public static String dbPass = "";
 		public static String dbName ="demo";
-		
+		public static String encryptKey ="Mary has one cat";
 }
