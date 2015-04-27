@@ -48,8 +48,7 @@ public class retriveImage extends HttpServlet {
 			String sql = "Select data from docs where id="+id;
 			PreparedStatement statement = con.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
-            String key = "Mary has one cat";
-            rs.next();
+           rs.next();
 //            out.println("<html>");
 //            out.println("<head>");
 //            out.println("<title>Servlet retriveImage</title>");
@@ -57,7 +56,7 @@ public class retriveImage extends HttpServlet {
 //            out.println("<body>");
             //rawBytes = rs.getBytes(1);
             InputStream is = new ByteArrayInputStream(rs.getBytes(1));
-            rawBytes = cryptClass.decrypt(key, is);
+            rawBytes = cryptClass.decrypt(encryptKey, is);
             out.write(rawBytes);
 //            out.println("</body>");
 //            out.println("</html>");
