@@ -84,6 +84,7 @@
  
 <div class="container-fluid">
 	<br/>
+	
 		<div class="col-md-6 col-md-offset-1">
 		<div class="well">
 			<h3 class="no-margin-top text-muted">Sign Up </h3>
@@ -103,28 +104,17 @@
 					</span>
 					<input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
 				</div>
-				</div>
-				
-				<div id="phone" class="form-group">
-				<div class="input-group">
-					<span id="phone-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter mobile number" class="input-group-addon">
-						&nbsp&nbsp Mobile &nbsp&nbsp
-					</span>
-					<input type="text" id="phone" name="phone" class="form-control" placeholder="10 digit mobile number">
-				</div>
 			</div>
 				
-					
-			<div id="d-password" class="form-group">
+			<div id="d-mobile" class="form-group">
 				<div class="input-group">
-					<span id="password-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter a password (Must be 6 char long)" class="input-group-addon">
-						Password
+					<span id="mobile-tooltip" data-toggle="tooltip" data-placement="left" data-original-title="Please enter mobile number" class="input-group-addon">
+						&nbsp&nbsp Mobile &nbsp&nbsp
 					</span>
-					<input type="password" id="password" name="password" class="form-control" placeholder="Password">
+					<input type="text" id="mobile" name="mobile" class="form-control" placeholder="10 digit mobile number">
 				</div>
-			</div>	
-			
-			
+			</div>
+						
 			<div id="type" class="form-group">
 				<div id="d-password" class="form-group">
 				<div class="input-group">
@@ -144,6 +134,7 @@
 			</form>
 		</div>
 		</div>
+	
 </div><br/><hr class="one2"/>
 <div class="footer">
 	
