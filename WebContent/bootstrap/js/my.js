@@ -213,6 +213,31 @@ $(document).ready(function(){
 		});
 	});
 	
+	
+	//request button handler of third.jsp page
+	$(document).on('click', '#but_req', function(e){
+		var dataString = "doc_id_req="+$('#doc_id_req').val();
+		//alert(dataString);
+		$.ajax({
+		    type  : 'POST',
+		    url   : 'request.jsp',
+		    data  : dataString,
+			beforeSend: function(){
+
+			},
+			success: function(responseText){ 
+				$('#docBody').html(responseText);
+				$('#request').show();
+			},
+			complete: function(responseText){ 
+
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			    alert(errorThrown);
+			}
+		});
+	});
+	
 	//select all 
 	$(document).on('click', '#mainCheckbox', function(e){
 		if(this.checked) { // check select status

@@ -20,7 +20,7 @@
 			    stmt.executeUpdate(s);
 			}
 		    
-		    s="select id,name,uploaded_on,privacy from docs where id="+doc_id;
+		    s="select id,name,uploaded_on,privacy from docs where id="+doc_id+" and privacy='public'";
 		    rs = stmt.executeQuery(s);
 		    int i=0;
 		    while(rs.next()){
@@ -40,7 +40,7 @@
 		       out.print("<tr><td><b>Privacy</b><td>"+privacy+"</td></tr>");
 		       out.print("</table>");
 		    }if(i==0)
-		    	out.print("<center><h2>Document Not Found</h2><br/><H3>Make sure you enterd the Document Number Correctly</h3><center>");
+		    	out.print("<center><h2>Document Not Found</h2></center><br/><left><h3>Possible reasons</h3><br/><li>Wrong document number</li><li>Document is private. Please request user</li></left>");
 		    
 		    rs.close();
  			}

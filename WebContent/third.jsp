@@ -148,6 +148,15 @@ catch(Exception e)
 				<div class="btn-group">
 					<input type="button" class="btn btn-default" value="Search" name="but" id="but">
 				</div>
+				<br><br>
+				<div class="col-lg-2 col-md-offset-1">
+					<div class="input-group">
+						<input type="text" placeholder="enter document id" id="doc_id_req" name ="doc_id_req" class="form-control">
+					</div><!-- /input-group -->
+				</div>
+				<div class="btn-group">
+					<input type="button" class="btn btn-default" value="Request" name="but_req" id="but_req">
+				</div>
 				<div class="row">
 				<div class="btn-group col-md-offset-3">
 					<div class='col-md-offset-10'><a href='print.jsp'><button type='submit' style='margin-left:280px' class='btn btn-default'>Profile Details</button></a></div>
@@ -163,6 +172,15 @@ catch(Exception e)
 					<div class="panel-heading"><b>Search Result</b></div>
 						<div class="panel-body">
 							<div id="docBody" style="margin-left:30px">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="display:none" id="request">
+				<div class="panel panel-default col-md-offset-3" style="width:650px" >
+				<!-- Default panel contents -->
+					<div class="panel-heading"><b>Your request has been submitted to the user.</b></div>
+						
 							</div>
 						</div>
 					</div>
