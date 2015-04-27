@@ -31,7 +31,7 @@
 	    //send otp
 	    String msg = "Your one time Password is: "+pswd;
 	    sendSms.SMSSender("ishan.int29", "615916", mobile, msg, "WEBSMS", "0");
-
+		session.setAttribute("OTP", "sent");
 	    response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", site);
 	} catch (SQLException e) {
