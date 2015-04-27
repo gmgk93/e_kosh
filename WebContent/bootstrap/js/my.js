@@ -103,29 +103,29 @@ $(document).ready(function(){
 		}
 	});
 
-	//password verification for signup
-	$(document).on('keyup', '#password', function(e){
-		var password = $("#password").val();
-		$("#password-tooltip").attr("data-original-title","Please enter a password");
+	//mobile number verification for signup
+	$(document).on('keyup', '#mobile', function(e){
+		var number = $("#mobile").val();
+		$("#mobile-tooltip").attr("data-original-title","Please enter a valid mobile number");
 
-		if(password == ""){ //check for null
-			$("#d-password").addClass("has-error");
-			$("#d-password").removeClass("has-success");
-			$('#password-tooltip').tooltip('show');
+		if(number == ""){ //check for null
+			$("#d-mobile").addClass("has-error");
+			$("#d-mobile").removeClass("has-success");
+			$('#mobile-tooltip').tooltip('show');
 			_password = 1; //error
 		}
 		else{
-			if(password.length < 6){
-				$("#d-password").addClass("has-error");
-				$("#d-password").removeClass("has-success");
-				$("#password-tooltip").attr("data-original-title","Your password should be min 6 char long");
-				$('#password-tooltip').tooltip('show');
+			if(number.length < 10){
+				$("#d-mobile").addClass("has-error");
+				$("#d-mobile").removeClass("has-success");
+				$("#mobile-tooltip").attr("data-original-title","Your mobile number should be atleast 10 digit long");
+				$('#mobile-tooltip').tooltip('show');
 				_password = 1; //error
 			}
 			else{
-				$("#d-password").addClass("has-success");
-				$("#d-password").removeClass("has-error");
-				$('#password-tooltip').tooltip('hide');
+				$("#d-mobile").addClass("has-success");
+				$("#d-mobile").removeClass("has-error");
+				$('#mobile-tooltip').tooltip('hide');
 				_password = 0; //no error
 			}
 		}
