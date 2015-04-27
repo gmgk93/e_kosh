@@ -17,7 +17,7 @@
 		
 		//sql update querry
 		String s = "insert into details values(NULL,'" + email + "','"
-				+ name + "','" + pswd + "','" + mobile + "','" + type + "')";
+				+ name + "','" + pswd + "','" + mobile + "','" + type + "',0)";
 		stmt.executeUpdate(s);
 		
 		String site = new String("index.jsp");
