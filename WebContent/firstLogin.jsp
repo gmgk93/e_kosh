@@ -77,6 +77,32 @@
 			  </ul>
 			</li>
 		 </ul>
+		 <ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Welcome <% out.print((String)session.getAttribute("name")); %></a></li>
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			  </ul>
+			</li>
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			  </ul>
+			</li>
+			<li><a href="logout.jsp">Sign out</a></li>
+			
+			<div class="col-md-1"></div>
+		  </ul>
 		</div><!-- /.navbar-collapse -->
 	   </div><!-- /.container-fluid -->
 	</nav>
@@ -84,8 +110,8 @@
 <div class="container-fluid">
 	<br/>
 		<div class="col-md-4 col-md-offset-1">
-		<h2> Welcome <% out.print((String)session.getAttribute("name")); %>. </h2><br>
-		<h3> Enter Your New Password</h3>
+		<h3> Welcome <% out.print((String)session.getAttribute("name")); %> !!!! </h3><br>
+		<h4> Enter Your New Password</h4>
 		<form method="post" action="changePswd.jsp" id="pswd-reset" name="pswd-reset">
 			<div id='pass_mismatch' class='alert alert-block alert-danger' style="display:none">
 				<button type='button' class='close' data-dismiss='alert'></button>
