@@ -56,7 +56,6 @@ public class FileUploadServlet extends HttpServlet {
 			// connects to the database
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			conn = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
-			String key = "Mary has one cat";
 			
 			// constructs SQL statement
 			String sql = "INSERT INTO docs (owner_id, type,name , data, format, uploaded_on,privacy) values (?, ?, ?, ?, ?, ?,?)";
@@ -70,7 +69,7 @@ public class FileUploadServlet extends HttpServlet {
 			statement.setString(7, privacy);
 			
 			//cryptClass.encrypt(key, inputStream, outputStream);
-			InputStream is = new ByteArrayInputStream(cryptClass.encrypt(key, inputStream));
+			InputStream is = new ByteArrayInputStream(cryptClass.encrypt(encryptKey, inputStream));
 			//copyStream(inputStream, cryptClass.encrypt(key, inputStream, outputStream));
 			//outputStream.close();
 			
