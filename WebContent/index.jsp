@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <%@ page import="java.io.*,java.util.*,java.lang.*" %>
+
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,6 +18,13 @@
 	<script type="text/javascript" src="bootstrap/js/lightbox.js"></script>
     
   </head>
+  
+  
+  <!--To check if redirected from OTP page-->
+  <script type="text/javascript">  
+	if(<%= (String)session.getAttribute("OTP")=="sent" %>)
+	alert("Please enter OTP recieved on your phone as your password");	
+	</script>
   <body>
 	<div class="one">
 	<div id="container_header" class="container">
