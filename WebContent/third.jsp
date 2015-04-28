@@ -179,12 +179,12 @@ catch(Exception e)
 				<div class="row" style="display:none" id="request">
 				<div class="panel panel-default col-md-offset-3" style="width:650px" >
 				<!-- Default panel contents -->
-					<div class="panel-heading"><b>Your request has been submitted to the user.</b></div>
+					<div class="panel-heading"><center><b>Your request has been submitted to the user.</b></center></div>
 						
 							</div>
 						</div>
 					</div>
-				</div>
+				
 				<br/><br/>
 			
 			<div class="row">
@@ -244,7 +244,7 @@ catch(Exception e)
 	</div> <br/>
  
  </div>
-
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -117,11 +117,27 @@ catch(Exception e)
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
 			  <ul class="dropdown-menu" role="menu">
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Another action</a></li>
-				<li><a href="#">Something else here</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Separated link</a></li>
+				<%
+								try {
+								    java.sql.Connection con;
+								    Class.forName("com.mysql.jdbc.Driver");
+								    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
+								    Statement stmt = con.createStatement();
+								    
+								    String s="select * from request where owner_id="+session.getAttribute("owner")+"";//replace owner id with sessin variable
+								    ResultSet rs = stmt.executeQuery(s);
+								    int i=1;
+								    while(rs.next()){
+								       //Retrieve by column name
+								     
+								       //Display values
+								       out.print("<li class='list-group-item'><a class='list-group-link' href='http://stackoverflow.com'>Your document "+rs.getString("doc_id")+" is requested by "+rs.getString("req_by")+"</a><a class='btn btn-sm btn-default' href='http://google.com'>Accept</a></li>");
+									}
+								    rs.close();
+								}
+								catch(SQLException e) {
+								    out.println("failed....\nSQLException caught: " +e.getMessage());}
+								%>
 			  </ul>
 			</li>
 			<li class="dropdown">
@@ -136,7 +152,7 @@ catch(Exception e)
 			</li>
 			<li><a href="logout.jsp">Sign out</a></li>
 			
-			<div class="col-md-1"></div>
+		
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
