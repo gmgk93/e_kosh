@@ -53,7 +53,7 @@ catch(Exception e)
 		<a href="http://www.ekosh.gov.in/" target="_blank" title="DeitY"></a><center><a href="http://www.ekosh.gov.in/" target="_blank" title="DeitY"><img src="./img/ekosh.jpg" style="height:140px"></a></div>
 	<div id="Rlogo">
 		<a href="http://www.cdac.in/" target="_blank" title="DeitY"></a><center><a href="http://www.cdac.in/" target="_blank" title="DeitY"><img src="./img/cdac.png"></a></div>
-		</div>
+	</div>
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -183,9 +183,7 @@ catch(Exception e)
 						
 							</div>
 						</div>
-					</div>
-				</div>
-				<br/><br/>
+					
 			
 			<div class="row">
 				<div class="panel panel-default col-md-offset-1" style="width:1000px">
@@ -230,6 +228,7 @@ catch(Exception e)
 						</div>
 				</div>	  
 			</div>
+			
 				
 				
 				
