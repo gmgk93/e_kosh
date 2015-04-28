@@ -263,5 +263,16 @@ $(document).ready(function(){
 		
 	});
 	
+	//sign document button handler
+	$(document).on('click', '#signButton', function(e){
+		var pass1 = $('#signfile').val();
+		if(pass1 != "")
+			$('#sign-file-form').submit();
+		else
+			alert("please browse file to want to sign");
+		//alert(dataString);
+		
+	});
+	
 });
 
