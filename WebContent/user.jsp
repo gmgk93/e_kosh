@@ -148,11 +148,7 @@ alert('Hello, <%=request.getAttribute("Message")%>
 											//Retrieve by column name
 
 											//Display values
-											out.print("<li class='list-group-item'><a class='list-group-link' href='http://stackoverflow.com'>Your document "
-													+ rs.getString("doc_id")
-													+ " is requested by "
-													+ rs.getString("req_by")
-													+ "</a><a class='btn btn-sm btn-default' href='http://google.com'>Accept</a></li>");
+											out.print("<li class='list-group-item'><div><a class='list-group-link' href='#'>Your document "+rs.getString("doc_id")+" is requested by "+rs.getString("req_by")+"</a><a class='btn btn-sm btn-default'  href='accept.jsp?doc_id="+rs.getString("doc_id")+"&third_id="+rs.getString("third_id")+"&req_id="+rs.getString("id")+"'>Accept</a><a class='btn btn-sm btn-default'>Reject</a></div></li>");
 										}
 										rs.close();
 									} catch (SQLException e) {

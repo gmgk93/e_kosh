@@ -22,7 +22,7 @@
 		    
 		    s="select id,name,uploaded_on,privacy from docs where id="+doc_id+" and privacy='public'";
 		    rs = stmt.executeQuery(s);
-		    int i=0;
+		    int i=0;int j=0;
 		    while(rs.next()){
 		       //Retrieve by column name
 		       String name = rs.getString("name");
@@ -39,9 +39,41 @@
 		       out.print("<tr><td><b>Upload Date</b><td>"+date+"</td></tr>");
 		       out.print("<tr><td><b>Privacy</b><td>"+privacy+"</td></tr>");
 		       out.print("</table>");
-		    }if(i==0)
-		    	out.print("<center><h2>Document Not Found</h2></center><br/><left><h3>Possible reasons</h3><br/><li>Wrong document number</li><li>Document is private. Please request user</li></left>");
+		    }
 		    
+		    
+		     if(i==0){
+		    	s="select * from permissions where third_id="+viewer_id+" and doc_id="+doc_id;
+			    rs = stmt.executeQuery(s);
+			    if(rs.next())
+			    {
+			    	 s="select id,name,uploaded_on,privacy from docs where id="+doc_id;
+					    rs = stmt.executeQuery(s);
+			    while(rs.next()){
+			       //Retrieve by column name
+			       String name = rs.getString("name");
+			       String id = rs.getString("id");
+			       String date = rs.getString("uploaded_on");
+			       String privacy = rs.getString("privacy");
+			       ++j;
+			
+			       //Display values
+			       out.print(" <img src='" + "retriveImage?" + id + "'width='400' height='400' /><br/>");
+			       out.print("<br/><br/><table class='table table-bordered table-striped no-margin-bottom'>");
+			       out.print("<tr><td><b>Name</b></td><td>"+name+"</td></tr>");
+			       out.print("<tr><td><b>ID</b><td>"+id+"</td></tr>");
+			       out.print("<tr><td><b>Upload Date</b><td>"+date+"</td></tr>");
+			       out.print("<tr><td><b>Privacy</b><td>"+privacy+"</td></tr>");
+			       out.print("</table>");
+			    }
+		    }
+		    }
+		    	
+		    
+		    if(j==0 && i==0)
+		    {
+		    	out.print("<center><h2>Document Not Found</h2></center><br/><left><h3>Possible reasons</h3><br/><li>Wrong document number</li><li>Document is private. Please request user</li></left>");
+		    }
 		    rs.close();
  			}
 		

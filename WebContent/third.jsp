@@ -183,13 +183,13 @@ catch(Exception e)
 						
 							</div>
 						</div>
-<<<<<<< HEAD
+
 					</div>
 				
 				<br/><br/>
-=======
+
 					
->>>>>>> origin/master
+
 			
 			<div class="row">
 				<div class="panel panel-default col-md-offset-1" style="width:1000px">
