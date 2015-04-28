@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -39,14 +38,14 @@ public class digiSign {
 	
 	/**
 	 * A properties file that is PRIVATE. You should make your own properties
-	 * file and adapt this line.
+	 * file and adapt this line.sms
 	 */
 	
 	public static String PATH = "D:/ishan/workspace/ekosh/key.properties";
 	/** Some properties used when signing. */
 	public static Properties properties = new Properties();
 	/** One of the resources. */
-	public static final String RESOURCE = "C:/Users/Public/Pictures/Sample Pictures/Koala.jpg";
+	public static final String RESOURCE = "D:/ishan/workspace/ekosh/WebContent/img/sign.PNG";
 
 	/*
 	 * public void createPdf(String filename) throws IOException,
@@ -118,8 +117,8 @@ public class digiSign {
 		// appearance
 		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
 		appearance.setImage(Image.getInstance(RESOURCE));
-		appearance.setReason("I've written this.");
-		appearance.setLocation("Foobar");
+		appearance.setReason("Digital Signature");
+		appearance.setLocation("Bangalore");
 		appearance.setVisibleSignature(new Rectangle(480, 20, 580, 70), 1,
 				"first");
 		// digital signature
