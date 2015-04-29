@@ -8,8 +8,15 @@
 
 <script type="text/javascript">  
 if(<%=request.getAttribute("javax.servlet.forward.request_uri") != null%>)
-alert('Hello, <%=request.getAttribute("Message")%>
-	');
+alert('Hello, <%=request.getAttribute("Message")%>');
+</script>
+
+<script type="text/javascript">  
+if(<%=session.getAttribute("document")!=null%>)
+{
+alert("Your document deleted successfully");
+session.removeAtrribute("document");
+}
 </script>
 
 
@@ -234,12 +241,13 @@ alert('Hello, <%=request.getAttribute("Message")%>
 					<div class="panel-heading">
 						<b>List of Docs Uploaded</b>
 					</div>
+					<form method="post" action="delete.jsp">
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">
 								<tr>
 									<th text-align=center>Sl. No.</th>
-									<th>Select<input type="checkbox" id="mainCheckbox"
+									<th>Select<input type="checkbox" name="all_checked" value="all_checked" id="mainCheckbox"
 										style="margin-left: 5px" /></th>
 									<th>ID</th>
 									<th>Name of the Doc</th>
@@ -269,7 +277,8 @@ alert('Hello, <%=request.getAttribute("Message")%>
 												//Display values
 												out.print(" <tr align=center><td><b>#"
 														+ (i++)
-														+ "</td> <td> <input type='checkbox' class='checkbox1'/> </td><td><a href='"
+														+ "</td> <td> <input type='checkbox' class='checkbox1' name ='checkbox' value='" + id
+														+"'/> </td><td><a href='"
 														+ "retriveImage?" + id + "'>" + id
 														+ "</a></td> <td>" + name + "</td> <td>" + date
 														+ " </td> <td> Verified </td><td>" + privacy
@@ -287,9 +296,10 @@ alert('Hello, <%=request.getAttribute("Message")%>
 						</div>
 						<div class="btn-group btn-group-md" style="margin-left: 125px"
 							role="toolbar" aria-label="...">
-							<button type="button" class="btn btn-default">Delete</button>
+							<button type="submit" class="btn btn-default">Delete</button>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 
