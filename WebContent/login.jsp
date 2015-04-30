@@ -22,12 +22,14 @@ try {
     	String name=rs.getString("name");
     	String type = rs.getString("type");
     	String ver_stat = rs.getString("verified");
+    	String key_created = rs.getString("key_created");
     	
     	//create session variable
     	session.setAttribute("email",email);
     	session.setAttribute("owner",owner);
     	session.setAttribute("name",name);
     	session.setAttribute("type",type);
+    	session.setAttribute("key_created",key_created);
     	
     	//check if user is loginin in for the first tym
     	if(ver_stat.equals("0"))

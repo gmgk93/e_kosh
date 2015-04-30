@@ -8,7 +8,7 @@
 
 <script type="text/javascript">  
 if(<%=request.getAttribute("javax.servlet.forward.request_uri") != null%>)
-alert('Hello, <%=request.getAttribute("Message")%>');
+	alert('Hello, <%=request.getAttribute("Message")%>');
 </script>
 
 <script type="text/javascript">  
@@ -189,6 +189,19 @@ session.removeAtrribute("document");
 
 		<div class="container-fluid">
 			<br />
+			<% 
+			int flag = Integer.parseInt((String)session.getAttribute("key_created"));
+			if(flag == 0){
+				out.print("<br/><div class='row'>");
+					out.print("<div class='panel panel-default col-md-offset-3' style='width:500px' >");
+					out.print("<div class='panel-heading'><center><b>You dont have a valid key pair to sign documents. Click <a href=''>Here</a> to create one.</b></center></div>");	
+					out.print("</div>");
+				out.print("</div><br/><br/>");
+			}
+			%>
+			<div class="row">
+				
+			</div>
 			<div class="row">
 				<div class="col-lg-2 col-md-offset-1">
 					<div class="input-group">
@@ -273,7 +286,6 @@ session.removeAtrribute("document");
 												String id = rs.getString("id");
 												String date = rs.getString("uploaded_on");
 												String privacy = rs.getString("privacy");
-
 												//Display values
 												out.print(" <tr align=center><td><b>#"
 														+ (i++)

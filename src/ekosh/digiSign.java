@@ -55,24 +55,6 @@ public class digiSign {
 	 * document.close(); }
 	 */
 
-	public static void props() {
-		try {
-
-			properties.setProperty("PASSWORD", "gmanoj");
-			properties.setProperty("PASSWORD1", "gmanoj");
-
-			File file = new File(PATH);
-			FileOutputStream fileOut = new FileOutputStream(file);
-			properties.store(fileOut, "Favorite Things");
-			fileOut.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	/**
 	 * Manipulates a PDF file src with the file dest as result
 	 * 
@@ -87,14 +69,14 @@ public class digiSign {
 	 * @throws KeyStoreException
 	 * @throws Exception
 	 */
-	public void signPdfFirstTime(String src, String dest) throws IOException,
+	public void signPdfFirstTime(String src, String dest, String alias) throws IOException,
 			DocumentException, GeneralSecurityException {
 
 		// String path = properties.getProperty("PRIVATE");
 		String keystore_password = properties.getProperty("PASSWORD");// getting
 																		// keystore
 																		// passwd
-		String key_password = properties.getProperty("PASSWORD1");// getting
+		String key_password = properties.getProperty(alias);// getting
 																	// alias
 																	// passwd
 		KeyStore ks = KeyStore.getInstance("pkcs12");// creating keystore
@@ -102,7 +84,7 @@ public class digiSign {
 		FileInputStream fin = new FileInputStream(
 				"D:/ishan/workspace/ekosh/KEYSTORE.p12");
 		ks.load(fin, keystore_password.toCharArray());
-		String alias = (String) ks.aliases().nextElement();// getting alias
+		
 		PrivateKey pk = (PrivateKey) ks.getKey(alias,
 				key_password.toCharArray());// getting private key of alias
 		Certificate[] chain = ks.getCertificateChain(alias);// creating cert
@@ -178,7 +160,7 @@ public class digiSign {
 	 * @param args
 	 *            no arguments needed
 	 */
-	public static String convertAndSign(String a) throws IOException,
+	public static String convertAndSign(String a,String name) throws IOException,
 			DocumentException, GeneralSecurityException {
 		source = base+"new"+a;
 		
@@ -188,10 +170,9 @@ public class digiSign {
 		convert();
 		
 		Security.addProvider(new BouncyCastleProvider());
-		props();
 		properties.load(new FileInputStream(PATH));
 		digiSign signatures = new digiSign();
-		signatures.signPdfFirstTime(temp, destination);
+		signatures.signPdfFirstTime(temp, destination, name);
 		return destination;
 		
 

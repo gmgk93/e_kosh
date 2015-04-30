@@ -5,7 +5,6 @@ import java.io.IOException;
 
 
 import java.io.InputStream;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +34,6 @@ public class retriveImage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("image/jpeg");
         byte[] rawBytes = null;
         ServletOutputStream out = response.getOutputStream();
         try {
@@ -45,21 +43,29 @@ public class retriveImage extends HttpServlet {
 			con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 
 			// constructs SQL statement
-			String sql = "Select data from docs where id="+id;
+			String sql = "Select data,format from docs where id="+id;
 			PreparedStatement statement = con.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
-           rs.next();
+            rs.next();
 //            out.println("<html>");
 //            out.println("<head>");
 //            out.println("<title>Servlet retriveImage</title>");
 //            out.println("</head>");
 //            out.println("<body>");
             //rawBytes = rs.getBytes(1);
+            String contentType = rs.getString("format");
+            response.setContentType(contentType);
             InputStream is = new ByteArrayInputStream(rs.getBytes(1));
             rawBytes = cryptClass.decrypt(encryptKey, is);
             out.write(rawBytes);
+            
+            //OutputStream targetFile=  new FileOutputStream(
+             //       "./newtest.pdf");
+            //targetFile.write(rawBytes);
+            //targetFile.close();
 //            out.println("</body>");
 //            out.println("</html>");
+            
             out.flush();
             statement.close();
         } catch (Exception ex) {

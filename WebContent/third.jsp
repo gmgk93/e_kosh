@@ -65,7 +65,7 @@ catch(Exception e)
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#">Home</a>
+		  <a class="navbar-brand" href="third.jsp">Home</a>
 		</div></div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -218,7 +218,7 @@ catch(Exception e)
 									       String privacy = rs.getString("privacy");
 									
 									       //Display values
-									       out.print(" <tr align=center><td><b>#"+(++i)+"</td><td><a href='" + "retriveImage?" + id + "'  rel='lightbox'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
+									       out.print(" <tr align=center><td><b>#"+(++i)+"</td><td><a href='" + "retriveImage?" + id + "''>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
 										}
 									    if(i == 0)
 									    	out.print("<td colspan='7' align='center'>No Document Viewed Recently</td>");

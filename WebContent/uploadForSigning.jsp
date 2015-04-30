@@ -54,7 +54,9 @@
             fileName.substring(fileName.lastIndexOf("\\")+1)) ;
             }
             fi.write( file ) ;
-            String signedFilePath = digiSign.convertAndSign(fileName);	//sign file and get its location on server
+            String id = (String) session.getAttribute("owner");
+            String name = "user"+id;
+            String signedFilePath = digiSign.convertAndSign(fileName,name);	//sign file and get its location on server
             File signedFile = new File(signedFilePath);
             response.setHeader("Content-Type",    getServletContext().getMimeType(signedFile.getName()));		//download file on client
             response.setHeader("Content-Length", String.valueOf(signedFile.length()));
