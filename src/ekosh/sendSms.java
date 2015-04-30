@@ -45,7 +45,7 @@ public class sendSms {
 			wr.close();
 			rd.close();
 
-			System.out.println(retval);
+			//System.out.println(retval);
 			rsp = retval;
 		} catch (Exception e) {
 			e.printStackTrace();

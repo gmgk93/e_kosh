@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="ekosh.sendSms"%>
 
 <%@include file="Include.jsp"%>	
 
@@ -25,7 +26,34 @@ try {
     stmt.executeUpdate(s);
 }
 catch(SQLException e) {
-    out.println("failed....\nSQLException caught: " +e.getMessage());}
+    out.println("failed....\nSQLException caught: " +e.getMessage());
+    }
+
+
+try {
+		 java.sql.Connection con;
+	    Class.forName("com.mysql.jdbc.Driver");
+	    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
+	    Statement stmt = con.createStatement();
+	    String s;
+	   
+	   
+	  s="select mobile from details where owner_id="+third_id+"";
+	    ResultSet rs = stmt.executeQuery(s);
+	    rs.next();
+	    String mobile  = rs.getString("mobile");
+	    rs.close();
+	    
+	   //SENDING SMS TO THIRD UPON ACCEPTING BY USER
+	   String msg = "The document "+doc_id+",requested by you, is accepted by the user. Please login to see it.";
+	   sendSms.SMSSender("gmgk93", "466639", mobile, msg, "WEBSMS", "0");
+	    
+		
+			}
+
+catch(SQLException e) {
+    out.println("failed....\nSQLException caught: " +e.getMessage());
+    }	
 
 String site = "user.jsp" ;
 response.setStatus(response.SC_MOVED_TEMPORARILY);
