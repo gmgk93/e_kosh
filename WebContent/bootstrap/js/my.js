@@ -274,5 +274,34 @@ $(document).ready(function(){
 		
 	});
 	
+	//new key button handler
+	$(document).on('click', '#newKeyFormButton', function(e){
+		var name = $('#name').val();
+		var pass = $('#key-pswd-new').val();
+		var unitName = $('#orgUnit').val();
+		var orgName = $('#orgName').val();
+		var city = $('#cityName').val();
+		var state = $('#stateName').val();
+		var country = $('#countryName').val();
+		if(name != "" && pass !="" && unitName !="" && orgName !="" && city !="" && state !="" && country !="")
+			$('#new-key-form').submit();
+		else
+			alert("Please fill the form correctly");
+		//alert(dataString);
+		
+	});
+	
+	//ajax call to refresh notification
+	 $(document).ready(function() {
+		 setInterval(function(){
+			 $.ajax({
+                 url: '/ekosh/get_notification.jsp',
+                 success: function(data) {
+                 $('#notification').html(data);
+                 }
+               });
+			 },3000);
+	   });
+	
 });
 
