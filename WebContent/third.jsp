@@ -207,7 +207,7 @@ catch(Exception e)
 									    Class.forName("com.mysql.jdbc.Driver");
 									    con = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 									    Statement stmt = con.createStatement();
-									    String s="select d.id,d.name,d.uploaded_on,d.privacy from docs d,recentdocs rd where rd.doc_id=d.id and rd.viewer_id="+viewer_id;
+									    String s="select d.id,d.name,d.uploaded_on,d.privacy,d.signed from docs d,recentdocs rd where rd.doc_id=d.id and rd.viewer_id="+viewer_id;
 									    ResultSet rs = stmt.executeQuery(s);
 									    int i=0;
 									    while(rs.next()){
@@ -216,9 +216,9 @@ catch(Exception e)
 									       String id = rs.getString("id");
 									       String date = rs.getString("uploaded_on");
 									       String privacy = rs.getString("privacy");
-									
+									       String signed = rs.getString("signed");
 									       //Display values
-									       out.print(" <tr align=center><td><b>#"+(++i)+"</td><td><a href='" + "retriveImage?" + id + "''>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> Verified </td><td>"+privacy+" </td></tr>");
+									       out.print(" <tr align=center><td><b>#"+(++i)+"</td><td><a href='" + "retriveImage?" + id + "'target='_blank'>"+id+"</a></td> <td>"+name+"</td> <td>"+date+" </td> <td> "+ signed +" </td><td>"+privacy+" </td></tr>");
 										}
 									    if(i == 0)
 									    	out.print("<td colspan='7' align='center'>No Document Viewed Recently</td>");

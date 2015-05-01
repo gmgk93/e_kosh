@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.lowagie.text.pdf.AcroFields;
 
 import static ekosh.Variables.*;
 
@@ -48,6 +51,33 @@ public class FileUploadServlet extends HttpServlet {
 			// obtains input stream of the upload file
 			inputStream = filePart.getInputStream();
 		}
+		String signed = "";
+		try{
+			com.lowagie.text.pdf.PdfReader reader = new com.lowagie.text.pdf.PdfReader(inputStream);
+			AcroFields af = reader.getAcroFields();
+			 
+			// Search of the whole signature
+			ArrayList names = af.getSignatureNames();
+			
+			if(names.size()!=0)
+			{
+				System.out.print("Signature exists");
+				signed="Signed";
+				
+			}
+			else
+			{
+				System.out.print("Signture does not exist");
+				signed="Not-Signed";
+			}
+			
+			}
+			
+			catch(Exception e)
+			{
+				signed="Not-Signed";
+				System.out.println("Please upload PDF only");
+			}
 		
 		Connection conn = null;	// connection to the database
 		String message = null;	// message will be sent back to client
@@ -58,7 +88,7 @@ public class FileUploadServlet extends HttpServlet {
 			conn = DriverManager.getConnection(dbURL+dbName, dbUser, dbPass);
 			
 			// constructs SQL statement
-			String sql = "INSERT INTO docs (owner_id, type,name , data, format, uploaded_on,privacy) values (?, ?, ?, ?, ?, ?,?)";
+			String sql = "INSERT INTO docs (owner_id, type,name , data, format, uploaded_on,privacy,signed) values (?, ?, ?, ?, ?, ?,?, ?)";
 			int own = Integer.parseInt((String)request.getSession().getAttribute("owner"));
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, own );		//update owner id
@@ -67,6 +97,7 @@ public class FileUploadServlet extends HttpServlet {
 			statement.setString(6, new java.util.Date().toString());
 			statement.setString(5, filePart.getContentType());
 			statement.setString(7, privacy);
+			statement.setString(8, signed);
 			
 			//cryptClass.encrypt(key, inputStream, outputStream);
 			InputStream is = new ByteArrayInputStream(cryptClass.encrypt(encryptKey, inputStream));

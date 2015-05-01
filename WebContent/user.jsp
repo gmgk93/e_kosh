@@ -4,8 +4,6 @@
 <%@include file="/Include.jsp"%>
 
 
-
-
 <script type="text/javascript">  
 if(<%=request.getAttribute("javax.servlet.forward.request_uri") != null%>)
 	alert('Hello, <%=request.getAttribute("Message")%>');
@@ -138,31 +136,7 @@ session.removeAtrribute("document");
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"><span
 								class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<%
-									try {
-										java.sql.Connection con;
-										Class.forName("com.mysql.jdbc.Driver");
-										con = DriverManager.getConnection(dbURL + dbName, dbUser,
-												dbPass);
-										Statement stmt = con.createStatement();
-
-										String s = "select * from request where owner_id="
-												+ session.getAttribute("owner") + "";//replace owner id with sessin variable
-										ResultSet rs = stmt.executeQuery(s);
-										int i = 1;
-										while (rs.next()) {
-											//Retrieve by column name
-
-											//Display values
-											out.print("<li class='list-group-item'><div><a class='list-group-link' href='#'>Your document "+rs.getString("doc_id")+" is requested by "+rs.getString("req_by")+"</a><a class='btn btn-sm btn-default'  href='accept.jsp?doc_id="+rs.getString("doc_id")+"&third_id="+rs.getString("third_id")+"&req_id="+rs.getString("id")+"'>Accept</a><a class='btn btn-sm btn-default'>Reject</a></div></li>");
-										}
-										rs.close();
-									} catch (SQLException e) {
-										out.println("failed....\nSQLException caught: "
-												+ e.getMessage());
-									}
-								%>
+							<ul class="dropdown-menu" role="menu" id="notification">
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"><span
@@ -194,7 +168,7 @@ session.removeAtrribute("document");
 			if(flag == 0){
 				out.print("<br/><div class='row'>");
 					out.print("<div class='panel panel-default col-md-offset-3' style='width:500px' >");
-					out.print("<div class='panel-heading'><center><b>You dont have a valid key pair to sign documents. Click <a href=''>Here</a> to create one.</b></center></div>");	
+					out.print("<div class='panel-heading'><center><b>You dont have a valid key pair to sign documents. Click <a href='newKeyForm.jsp'>Here</a> to create one.</b></center></div>");	
 					out.print("</div>");
 				out.print("</div><br/><br/>");
 			}
@@ -276,7 +250,7 @@ session.removeAtrribute("document");
 											con = DriverManager.getConnection(dbURL + dbName, dbUser,
 													dbPass);
 											Statement stmt = con.createStatement();
-											String s = "select id,name,uploaded_on,privacy from docs where owner_id="
+											String s = "select id,name,uploaded_on,privacy,signed from docs where owner_id="
 													+ session.getAttribute("owner");//replace owner id with sessin variable
 											ResultSet rs = stmt.executeQuery(s);
 											int i = 1;
@@ -286,14 +260,15 @@ session.removeAtrribute("document");
 												String id = rs.getString("id");
 												String date = rs.getString("uploaded_on");
 												String privacy = rs.getString("privacy");
+												String signed = rs.getString("signed");
 												//Display values
 												out.print(" <tr align=center><td><b>#"
 														+ (i++)
 														+ "</td> <td> <input type='checkbox' class='checkbox1' name ='checkbox' value='" + id
 														+"'/> </td><td><a href='"
-														+ "retriveImage?" + id + "'>" + id
+														+ "retriveImage?" + id + "' target='_blank'>" + id
 														+ "</a></td> <td>" + name + "</td> <td>" + date
-														+ " </td> <td> Verified </td><td>" + privacy
+														+ " </td> <td> "+ signed +" </td><td>" + privacy
 														+ " </td></tr>");
 											}
 											rs.close();
