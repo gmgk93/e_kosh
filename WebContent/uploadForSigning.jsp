@@ -67,8 +67,15 @@
             
          }
       }catch(Exception ex) {
-         System.out.println(ex);
-      }
+    	  out.println("<html>");
+          out.println("<head>");
+          out.println("<title>Servlet upload</title>");  
+          out.println("</head>");
+          out.println("<body>");
+          out.println("<br/><br/><h3><center>Sigining Failed. You dont have a key pair to sign documents. Click <a href='newKeyForm.jsp'>Here</a> to create one now.</center></h3>"); 
+          out.println("</body>");
+          out.println("</html>");
+       }
    }else{
       out.println("<html>");
       out.println("<head>");

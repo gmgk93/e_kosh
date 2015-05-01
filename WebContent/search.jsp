@@ -58,7 +58,7 @@
 			       ++j;
 			
 			       //Display values
-			       out.print(" <img src='" + "retriveImage?" + id + "'width='400' height='400' /><br/>");
+			       out.print(" <iframe src='" + "retriveImage?" + id + "'width='570px' height='650px' /><br/>");
 			       out.print("<br/><br/><table class='table table-bordered table-striped no-margin-bottom'>");
 			       out.print("<tr><td><b>Name</b></td><td>"+name+"</td></tr>");
 			       out.print("<tr><td><b>ID</b><td>"+id+"</td></tr>");
