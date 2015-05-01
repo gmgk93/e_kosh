@@ -42,3 +42,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 WebContent/test.jsp
+*.classpath
+*.classpath
+build/classes/ekosh/digiSign.class
+*.jar
+*.class
+build/classes/ekosh/FileUploadServlet.class
+build/classes/ekosh/FileUploadServlet.class
+build/classes/ekosh/sendSms.class

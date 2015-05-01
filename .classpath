@@ -21,5 +21,10 @@
 	<classpathentry kind="lib" path="E:/workspace/jar/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/jar/servlet-api.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/jar/smtp.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/jar/bcpkix-jdk15on-1.47.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/jar/bouncycastle.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/jar/itext-1.3.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/jar/itextpdf-5.3.4.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/jar/bcprov-jdk15on-1.47.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
